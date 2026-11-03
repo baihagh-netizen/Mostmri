@@ -1,0 +1,9 @@
+{
+  "name": "pension-calculator-fa",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Offline Persian retirement pension calculator matching mostam.xlsx formulas",
+  "scripts": {"build": "vite build", "test:validation": "node validation.mjs"},
+  "dependencies": {"@capacitor/android": "^7.4.3", "@capacitor/core": "^7.4.3"},
+  "devDependencies": {"@capacitor/cli": "^7.4.3", "vite": "^6.4.1"}
+}

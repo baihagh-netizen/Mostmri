@@ -1,0 +1,17 @@
+const input={elapsedDays:845,lastPromotionRate:5,promotionDaysRequired:1095,base1405:42200000,base1404:32200000,monthsLast:3,monthsPrevious:12,monthsTwoYearsAgo:9,salaryMultiplier:1.325,companyYears:36.3,purchasedYears:2,special:30,workshop:10,attractionYears:25.3,attractionBase:8,effectMultiplier:1.3,positionYears:14.3,position:'C',degreeYears:13.32,degree:'لیسانس'};
+const promotionPercent=input.elapsedDays*input.lastPromotionRate/input.promotionDaysRequired;
+const salaryPriorMonths=input.base1405*(input.monthsLast-1)*input.salaryMultiplier;
+const salaryLastMonth=(input.base1405+(input.base1405*promotionPercent/100))*input.salaryMultiplier;
+const totalLastYear=salaryPriorMonths+salaryLastMonth;
+const totalPreviousYear=input.base1405*input.monthsPrevious;
+const totalTwoYearsAgo=input.base1404*input.monthsTwoYearsAgo;
+const total24=totalLastYear+totalPreviousYear+totalTwoYearsAgo;
+const average24=total24/24; const totalService=input.companyYears+input.purchasedYears; const finalAverage=average24*totalService/30;
+const attraction=input.attractionYears*(input.attractionBase*input.effectMultiplier)/30;
+const position=input.positionYears*(({C:50})[input.position]*input.effectMultiplier)/30;
+const degree=input.degreeYears*(38.5*input.effectMultiplier)/30;
+const totalPercentage=input.special+input.workshop+attraction+position+degree;
+const pension=finalAverage*(1+totalPercentage/100);
+const actual={promotionPercent,average24,finalAverage,totalPercentage,pension};
+const expected={promotionPercent:3.858447488584475,average24:40254268.78805175,finalAverage:51391283.15274606,totalPercentage:101.9762,pension:103798160.8431567};
+let fail=false;for(const [k,v] of Object.entries(expected)){const diff=Math.abs(actual[k]-v);console.log(`${k}: actual=${actual[k]} expected=${v} diff=${diff}`);if(diff>Math.max(1e-7,Math.abs(v)*1e-12))fail=true;}if(fail)process.exit(1);console.log('VALIDATION PASS');
